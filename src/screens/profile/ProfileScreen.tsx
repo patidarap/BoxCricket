@@ -18,6 +18,21 @@ import { logout } from '../../store/slices/authSlice';
 import { storage } from '../../utils/storage';
 import { formatPhone } from '../../utils/formatters';
 import { authService } from '../../api/authService';
+import {
+  About,
+  DarkMode,
+  EditProfile,
+  History,
+  Logout,
+  LostMatches,
+  Notification,
+  Organizations,
+  PaymentHistory,
+  PendingAmount,
+  TotalMatches,
+  TotalPaid,
+  WonMatches,
+} from '../../assets/images';
 
 export const ProfileScreen = ({ navigation }: any) => {
   const { theme, mode, toggleTheme } = useTheme();
@@ -110,13 +125,13 @@ export const ProfileScreen = ({ navigation }: any) => {
             <StatCard
               label="Total Matches"
               value={totalMatches}
-              icon={<Text style={{ fontSize: 20 }}>🏏</Text>}
+              icon={<TotalMatches width={20} height={20} />}
             />
             <Spacer size="md" horizontal />
             <StatCard
               label="Won Matches"
               value={wonMatches}
-              icon={<Text style={{ fontSize: 20 }}>🏆</Text>}
+              icon={<WonMatches width={20} height={20} />}
               color={theme.colors.success}
             />
           </View>
@@ -125,14 +140,14 @@ export const ProfileScreen = ({ navigation }: any) => {
             <StatCard
               label="Lost Matches"
               value={lostMatches}
-              icon={<Text style={{ fontSize: 20 }}>❌</Text>}
+              icon={<LostMatches width={20} height={20} />}
               color={theme.colors.error}
             />
             <Spacer size="md" horizontal />
             <StatCard
               label="Organizations"
               value={profileData?.stats?.paidPayments || 0}
-              icon={<Text style={{ fontSize: 20 }}>🏢</Text>}
+              icon={<Organizations width={20} height={20} />}
               color={theme.colors.secondary}
             />
           </View>
@@ -141,14 +156,14 @@ export const ProfileScreen = ({ navigation }: any) => {
             <StatCard
               label="Total Paid"
               value={`₹${totalPaid}`}
-              icon={<Text style={{ fontSize: 20 }}>💰</Text>}
+              icon={<TotalPaid width={20} height={20} />}
               color={theme.colors.success}
             />
             <Spacer size="md" horizontal />
             <StatCard
               label="Pending Amount"
               value={`₹${totalPending}`}
-              icon={<Text style={{ fontSize: 20 }}>⏳</Text>}
+              icon={<PendingAmount width={20} height={20} />}
               color={theme.colors.warning}
             />
           </View>
@@ -156,9 +171,13 @@ export const ProfileScreen = ({ navigation }: any) => {
 
         {/* Menu */}
         <View style={styles.menu}>
-          <MenuItem icon="👤" label="Edit Profile" onPress={() => {}} />
           <MenuItem
-            icon="🌙"
+            icon={<EditProfile width={22} height={22} />}
+            label="Edit Profile"
+            onPress={() => {}}
+          />
+          <MenuItem
+            icon={<DarkMode width={22} height={22} />}
             label="Dark Mode"
             rightComponent={
               <Switch
@@ -170,18 +189,31 @@ export const ProfileScreen = ({ navigation }: any) => {
             }
           />
           <MenuItem
-            icon="🔔"
+            icon={<Notification width={22} height={22} />}
             label="Notifications"
             onPress={() => navigation.navigate('Notifications')}
           />
           <MenuItem
-            icon="📜"
+            icon={<History width={22} height={22} />}
             label="Match History"
             onPress={() => navigation.navigate('Matches')}
           />
-          <MenuItem icon="💳" label="Payment History" onPress={() => {}} />
-          <MenuItem icon="ℹ️" label="About" onPress={() => {}} />
-          <MenuItem icon="🚪" label="Logout" onPress={handleLogout} danger />
+          <MenuItem
+            icon={<PaymentHistory width={22} height={22} />}
+            label="Payment History"
+            onPress={() => {}}
+          />
+          <MenuItem
+            icon={<About width={22} height={22} />}
+            label="About"
+            onPress={() => {}}
+          />
+          <MenuItem
+            icon={<Logout width={22} height={22} />}
+            label="Logout"
+            onPress={handleLogout}
+            danger
+          />
         </View>
 
         <Spacer size="xl" />
@@ -199,7 +231,7 @@ const MenuItem = ({ icon, label, onPress, rightComponent, danger }: any) => {
       disabled={!onPress}
     >
       <View style={styles.menuItemLeft}>
-        <Text style={{ fontSize: 20 }}>{icon}</Text>
+        <View style={styles.menuIcon}>{icon}</View>
         <Text
           variant="bodyMedium"
           color={danger ? theme.colors.error : theme.colors.text}
@@ -251,5 +283,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
+  },
+  menuIcon: {
+    width: 22,
+    height: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
