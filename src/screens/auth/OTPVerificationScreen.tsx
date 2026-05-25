@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Container } from '../../components/common/Container';
 import { Text } from '../../components/common/Text';
 import { Spacer } from '../../components/common/Spacer';
@@ -51,11 +52,14 @@ export const OTPVerificationScreen = ({ navigation, route }: any) => {
     setLoading(true);
 
     try {
+      const fcmToken = await AsyncStorage.getItem('fcmToken');
+
       const response = await authService.verifyOTP({
         name: name,
         email: email,
         mobile: phone,
         otp: otpCode,
+        fcmToken: fcmToken || undefined,
       });
 
       console.log('=== OTP Verification Success ===');

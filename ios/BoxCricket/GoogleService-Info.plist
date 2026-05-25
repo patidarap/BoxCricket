@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDdV7jK2-9J0eJmCFOkohXII_Krne9_1rA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1077576477658</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.BoxCricket</string>
+	<key>PROJECT_ID</key>
+	<string>cricsco-6e6d0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cricsco-6e6d0.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1077576477658:ios:d9e27815bb64a42f4b2ee3</string>
+</dict>
+</plist>

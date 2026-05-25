@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1077576477658",
+    "project_id": "cricsco-6e6d0",
+    "storage_bucket": "cricsco-6e6d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077576477658:android:d9e27815bb64a42f4b2ee3",
+        "android_client_info": {
+          "package_name": "com.boxcricket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdV7jK2-9J0eJmCFOkohXII_Krne9_1rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

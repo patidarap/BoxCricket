@@ -18,6 +18,7 @@ export interface VerifyOTPRequest {
   email: string;
   mobile: string;
   otp: string;
+  fcmToken?: string; // Optional FCM token for push notifications
 }
 
 export interface VerifyOTPResponse {
