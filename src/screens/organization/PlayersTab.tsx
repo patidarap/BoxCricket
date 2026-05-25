@@ -11,7 +11,10 @@ import { PrimaryButton } from '../../components/buttons/PrimaryButton';
 import { useTheme } from '../../hooks/useTheme';
 import { RootState } from '../../store/store';
 import { organizationService } from '../../api/organizationService';
-import { showSuccessMessage, showDangerMessage } from '../../utils/flashMessage';
+import {
+  showSuccessMessage,
+  showDangerMessage,
+} from '../../utils/flashMessage';
 
 export const PlayersTab = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -19,7 +22,7 @@ export const PlayersTab = () => {
   const [playerEmail, setPlayerEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [members, setMembers] = useState<any[]>([]);
-  
+
   const { theme } = useTheme();
   const user = useSelector((state: RootState) => state.auth.user);
   const currentOrganization = useSelector(
@@ -36,13 +39,13 @@ export const PlayersTab = () => {
 
   const fetchMembers = async () => {
     if (!currentOrganization) return;
-    
+
     try {
       const response = await organizationService.getMembers(
-        currentOrganization._id || currentOrganization.id
+        currentOrganization._id || currentOrganization.id,
       );
       console.log('Members fetched:', response);
-      
+
       if (response.success && response.data) {
         setMembers(response.data);
       }
@@ -52,17 +55,18 @@ export const PlayersTab = () => {
   };
 
   const handleAddPlayer = async () => {
-    if (!playerName.trim() || !playerEmail.trim() || !currentOrganization) return;
+    if (!playerName.trim() || !playerEmail.trim() || !currentOrganization)
+      return;
 
     try {
       setLoading(true);
       const response = await organizationService.addMembers(
         currentOrganization._id || currentOrganization.id,
-        [{ name: playerName.trim(), email: playerEmail.trim() }]
+        [{ name: playerName.trim(), email: playerEmail.trim() }],
       );
-      
+
       console.log('Member added:', response);
-      
+
       if (response.success) {
         showSuccessMessage(response.message || 'Player added successfully');
         setPlayerName('');
@@ -88,7 +92,11 @@ export const PlayersTab = () => {
         },
       ]}
     >
-      <Avatar name={item.userId?.name || 'Player'} uri={item.userId?.avatar} size="md" />
+      <Avatar
+        name={item.userId?.name || 'Player'}
+        uri={item.userId?.avatar}
+        size="md"
+      />
       <View style={styles.playerInfo}>
         <Text variant="bodyMedium">{item.userId?.name || 'Unknown'}</Text>
         <Text variant="caption" color={theme.colors.textSecondary}>
@@ -121,7 +129,10 @@ export const PlayersTab = () => {
       {members.length > 0 ? (
         <FlatList
           data={members}
-          keyExtractor={(item, index) => item._id || item.id || index.toString()}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) =>
+            item._id || item.id || index.toString()
+          }
           renderItem={renderPlayer}
           contentContainerStyle={styles.list}
         />

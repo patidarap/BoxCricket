@@ -279,6 +279,7 @@ export const PaymentsTab = () => {
       {splits.length > 0 ? (
         <FlatList
           data={splits}
+          showsVerticalScrollIndicator={false}
           keyExtractor={item => item._id || item.id}
           renderItem={renderPayment}
           contentContainerStyle={styles.list}

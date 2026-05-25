@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View, ImageBackground} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Text} from '../../components/common/Text';
-import {PrimaryButton} from '../../components/buttons/PrimaryButton';
-import {useTheme} from '../../hooks/useTheme';
-import {RootState} from '../../store/store';
+import React, { useEffect } from 'react';
+import { StyleSheet, View, ImageBackground } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Text } from '../../components/common/Text';
+import { PrimaryButton } from '../../components/buttons/PrimaryButton';
+import { useTheme } from '../../hooks/useTheme';
+import { RootState } from '../../store/store';
+import { images } from '../../assets/images';
 
-export const SplashScreen = ({navigation}: any) => {
-  const {theme} = useTheme();
+export const SplashScreen = ({ navigation }: any) => {
+  const { theme } = useTheme();
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated,
   );
@@ -24,9 +25,10 @@ export const SplashScreen = ({navigation}: any) => {
 
   return (
     <ImageBackground
-      source={require('../../../assets/images/welcomescreen.png')}
+      source={images.IMG_WelcomeScreen}
       style={styles.background}
-      resizeMode="cover">
+      resizeMode="cover"
+    >
       <View style={styles.overlay}>
         <View style={styles.content}>
           <Text variant="h1" center style={styles.mainTitle}>
