@@ -7,6 +7,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 import { Container } from '../../components/common/Container';
 import { Text } from '../../components/common/Text';
 import { Spacer } from '../../components/common/Spacer';
@@ -37,9 +38,11 @@ export const HomeScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
 
-  useEffect(() => {
-    fetchOrganizations();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchOrganizations();
+    }, [])
+  );
 
   const fetchOrganizations = async () => {
     try {

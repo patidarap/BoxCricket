@@ -16,13 +16,8 @@ import { Input } from '../../components/forms/Input';
 import { PrimaryButton } from '../../components/buttons/PrimaryButton';
 import { useTheme } from '../../hooks/useTheme';
 import { RootState } from '../../store/store';
-import {
-  addPayment,
-  updatePaymentStatus,
-} from '../../store/slices/organizationSlice';
-import { generateId } from '../../utils/helpers';
+import { updatePaymentStatus } from '../../store/slices/organizationSlice';
 import { formatCurrency, formatDate } from '../../utils/formatters';
-import { getPaymentStatusColor } from '../../utils/helpers';
 import { organizationService } from '../../api/organizationService';
 import { Avatar } from '../../components/common/Avatar';
 import {
@@ -167,12 +162,8 @@ export const PaymentsTab = () => {
   };
 
   const handleMarkPaid = async (splitMemberId: string) => {
-    console.warn('splitMemberId:', splitMemberId);
-
     try {
       const response = await organizationService.markPaid(splitMemberId);
-      console.warn('Mark Paid Response:', response);
-
       if (response.success) {
         showSuccessMessage('Payment marked as paid');
         fetchSplits();

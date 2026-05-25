@@ -57,6 +57,20 @@ class ApiClient {
     const url = this.buildURL(endpoint, params);
     const requestHeaders = this.getHeaders(headers);
 
+    // Log request details
+    console.log('\n🚀 API Request:');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('📍 URL:', url);
+    console.log('🔧 Method:', method);
+    console.log('📋 Headers:', JSON.stringify(requestHeaders, null, 2));
+    if (body) {
+      console.log('📦 Body:', JSON.stringify(body, null, 2));
+    }
+    if (params) {
+      console.log('🔗 Params:', JSON.stringify(params, null, 2));
+    }
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
@@ -72,6 +86,15 @@ class ApiClient {
 
       const data = await response.json();
 
+      // Log response details
+      console.log('\n✅ API Response:');
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('📍 URL:', url);
+      console.log('📊 Status:', response.status, response.statusText);
+      console.log('📋 Response Headers:', JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2));
+      console.log('📦 Response Data:', JSON.stringify(data, null, 2));
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+
       if (!response.ok) {
         throw {
           status: response.status,
@@ -83,6 +106,14 @@ class ApiClient {
       return data;
     } catch (error: any) {
       clearTimeout(timeoutId);
+
+      // Log error details
+      console.log('\n❌ API Error:');
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('📍 URL:', url);
+      console.log('🔧 Method:', method);
+      console.log('⚠️ Error:', JSON.stringify(error, null, 2));
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
       if (error.name === 'AbortError') {
         throw {

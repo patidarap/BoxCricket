@@ -74,6 +74,8 @@ export const organizationService = {
     mobileNumber: string;
     members: string[];
   }) => {
+    console.warn('Creating split with data:', splitData);
+
     const response = await apiClient.post(
       API_ENDPOINTS.SPLIT.CREATE,
       splitData,
@@ -106,6 +108,11 @@ export const organizationService = {
         status,
       },
     );
+    return response;
+  },
+
+  getSplitById: async (splitId: string) => {
+    const response = await apiClient.get(`split/${splitId}`);
     return response;
   },
 };
